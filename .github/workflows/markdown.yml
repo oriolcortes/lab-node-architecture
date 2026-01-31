@@ -1,0 +1,31 @@
+# Este workflow ejecuta un linter de Markdown en cada push/PR
+# para mantener una documentación consistente y sin errores comunes.
+
+name: Markdown Lint
+
+on:
+  # Dispara la acción en cada push que modifique archivos .md o la config del linter
+  push:
+    paths:
+      - '**/*.md' # todos los Markdown
+      - '.markdownlint.jsonc' # cambios en la config del linter
+      - '.github/workflows/markdown.yml' # cambios en este workflow
+
+  # También en cada Pull Request que toque esos mismos archivos
+  pull_request:
+    paths:
+      - '**/*.md'
+      - '.markdownlint.jsonc'
+      - '.github/workflows/markdown.yml' # cambios en este workflow
+
+jobs:
+  markdownlint:
+    # Usa una máquina Linux estándar que provee GitHub
+    runs-on: ubuntu-latest
+    steps:
+      # Paso 1: clona el repositorio en el runner
+      - uses: actions/checkout@v4
+
+      # Paso 2: ejecuta el linter de Markdown (CLI oficial mantenido)
+      - uses: DavidAnson/markdownlint-cli2-action@v17
+        # Sin inputs extra: usará reglas definidas en .markdownlint.jsonc

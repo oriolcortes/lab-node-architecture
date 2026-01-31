@@ -1,0 +1,41 @@
+# Formulario para proponer mejoras o nuevas funcionalidades.
+
+name: '✨ Propuesta de mejora' # Título del tipo de issue
+description: Sugiere una nueva funcionalidad o mejora
+title: '[ENH] ' # Prefijo sugerido para el título del issue
+labels: ['enhancement'] # Etiqueta automática aplicada al crear el issue
+body: # Campos del formulario
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema u oportunidad
+      placeholder: 'Cuando hago X, echo en falta Y...'
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución propuesta
+      placeholder: 'Describe tu propuesta de forma concisa'
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      placeholder: '¿Qué otras opciones valoraste?'
+  - type: textarea
+    id: scope
+    attributes:
+      label: Alcance y criterios de aceptación
+      placeholder: "- [ ] Caso 1\n- [ ] Caso 2"
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impacto previsto
+      options: [bajo, medio, alto]
+      default: 1
+  - type: textarea
+    id: extra
+    attributes:
+      label: Notas adicionales

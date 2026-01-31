@@ -1,0 +1,10 @@
+# Configuración para issue templates: desactiva "blank issues"
+# y ofrece un enlace a Discussions para dudas generales.
+
+blank_issues_enabled: false
+
+contact_links:
+  - name: Q&A / Discussions
+    # Enlaza al área de Discussions de tu repo (asegúrate de activarla en Settings)
+    url: https://github.com/oriolcortes/template-base/discussions
+    about: Dudas de uso o ideas informales

@@ -1,0 +1,14 @@
+; Este archivo define reglas de formato generales para que distintos editores se comporten igual.
+root = true
+
+[*]
+charset = utf-8 ; Codificación de caracteres por defecto
+end_of_line = lf ; Saltos de línea estilo Unix (LF)
+insert_final_newline = true ; Asegura salto de línea al final del archivo
+indent_style = space ; Indentación por espacios (no tabuladores)
+indent_size = 2 ; Tamaño de indentación a 2 espacios (estándar en muchos proyectos)
+trim_trailing_whitespace = true ; Elimina espacios al final de línea
+
+[*.md]
+max_line_length = off ; En Markdown no limitamos longitud de línea
+trim_trailing_whitespace = false ; En Markdown no eliminamos espacios al final (pueden significar "salto de línea duro")

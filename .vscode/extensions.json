@@ -1,0 +1,14 @@
+{
+  // Lista de extensiones RECOMENDADAS para quien abra el repo en VS Code.
+  // VS Code mostrará un aviso para instalarlas (no se instalan solas).
+  "recommendations": [
+    "editorconfig.editorconfig", // Respeta reglas de formato compartidas entre editores/OS
+    "esbenp.prettier-vscode", // Formateador de código popular y configurable
+    "vscode-icons-team.vscode-icons", // Tema de iconos para el explorador de archivos
+    "vivaxy.vscode-conventional-commits", // Ayudas para escribir commits siguiendo Conventional Commits
+    "davidanson.vscode-markdownlint", // Linter de Markdown con reglas sensatas
+    "yzhang.markdown-all-in-one", // Atajos útiles para trabajar con Markdown (TOCs, snippets, etc.)
+    "github.vscode-github-actions", // Mejor soporte para GitHub Actions (YAML, sintaxis, esquemas)
+    "redhat.vscode-yaml", // Validador y ayudas para YAML
+  ]
+}

@@ -1,0 +1,2 @@
+# Normaliza finales de línea como LF y trata archivos como texto por defecto.
+text=auto eol=lf

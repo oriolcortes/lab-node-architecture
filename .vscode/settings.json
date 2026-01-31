@@ -1,0 +1,32 @@
+{
+  // Configuraciones generales del editor
+  "editor.formatOnSave": true, // Formatea automáticamente al guardar para mantener estilo consistente
+  "editor.formatOnPaste": true, // Formatea también al pegar para evitar “código sucio” que venga de fuera
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  }, // Aplica correcciones automáticas disponibles al guardar (eslint/prettier, etc.)
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Usa Prettier como formateador por defecto
+  "editor.tabSize": 2, // Tamaño de tabulación en 2 espacios (estándar en muchos proyectos)
+  "editor.wordWrap": "on", // Ajuste de línea activado para que el texto no se salga del ancho de la ventana
+  "files.trimTrailingWhitespace": true, // Elimina espacios al final de línea al guardar (limpieza básica)
+  "files.insertFinalNewline": true, // Asegura que los archivos terminen con salto de línea (buena práctica)
+  "workbench.iconTheme": "vscode-icons", // Tema de iconos en el explorador para identificar tipos de archivo de un vistazo
+  // ----------------------------------
+  // Configuraciones para validaciones
+  "markdown.validate.enabled": true, // Activa la validación integrada de Markdown (avisos de enlaces/ancoras, sintaxis)
+  "yaml.validate": true, // Valida archivos YAML (frecuentes en CI y configs)
+  // Configuraciones para Prettier
+  "prettier.singleQuote": true, // Comillas simples en Prettier (estilo más común en JS/TS)
+  "prettier.trailingComma": "es5", // Coma final donde ES5 lo permite (objetos, arrays) para difs más limpios
+  "prettier.tabWidth": 2, // Prettier alinea con 2 espacios (coincide con editor.tabSize)
+  // ----------------------------------
+  // Configuraciones para Conventional Commits
+  "conventionalCommits.scopes": [
+    "feat",
+    "fix",
+    "docs",
+    "chore",
+    "refactor",
+    "perf"
+  ], // Lista de “scopes” sugeridos al redactar commits convencionales (puedes adaptarla a tus dominios)
+}

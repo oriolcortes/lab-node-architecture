@@ -1,0 +1,11 @@
+# Ignora archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignora ficheros de logs
+*.log
+
+# Carpeta de configuración de VS Code: se ignora todo salvo los ajustes compartidos
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
