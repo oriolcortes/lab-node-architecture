@@ -3,7 +3,7 @@
 
 import mongoose, { type ConnectOptions } from 'mongoose';
 import { logError } from '../utils/logger.helper';
-import { DATABASE_URL } from './config';
+import { DATABASE_URL } from './env';
 import logger from './logger';
 
 export const createConnection = async () => {

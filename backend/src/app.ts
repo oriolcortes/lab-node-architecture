@@ -3,7 +3,7 @@
 import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
-import { CLIENT_URL, NODE_ENV } from './config/config';
+import { CLIENT_URL, NODE_ENV } from './config/env';
 import { createConnection } from './config/db';
 import { baseRouter } from './routes/base.routes';
 
