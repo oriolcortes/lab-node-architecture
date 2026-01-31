@@ -2,7 +2,7 @@
 // Inicia el servidor y escucha las peticiones entrantes.
 
 import { app } from './app.js';
-import { PORT } from './config/config.js';
+import { PORT } from './config/env.js';
 import logger from './config/logger.js';
 
 const BASE_URL =

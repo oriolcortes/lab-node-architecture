@@ -4,7 +4,7 @@
 // En producción, se recomienda utilizar un sistema de logging estructurado como Pino, ya que ofrece mejor rendimiento y facilita el análisis de logs. No obstante, para pruebas o ejemplos básicos, console.log puede ser suficiente.
 
 import pino from 'pino';
-import { LOG_LEVEL } from './config';
+import { LOG_LEVEL } from './env';
 
 const logger = pino({
   level: LOG_LEVEL,
