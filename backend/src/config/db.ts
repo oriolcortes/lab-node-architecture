@@ -1,10 +1,10 @@
-// Handles database connection and configuration.
-// This file is responsible for setting up and exporting the database instance.
+// Gestiona la conexión y la configuración de la base de datos.
+// Este archivo se encarga de inicializar y exportar la instancia de la base de datos.
 
 import mongoose, { type ConnectOptions } from 'mongoose';
+import { logError } from '../utils/logger.helper';
 import { DATABASE_URL } from './config';
 import logger from './logger';
-import { logError } from '../utils/logger.helper';
 
 export const createConnection = async () => {
   try {
