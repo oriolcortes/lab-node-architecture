@@ -1,0 +1,6 @@
+{
+  "default": true, // Activa reglas por defecto de markdownlint
+  "MD013": false, // MD013: Permite líneas largas (útil para tablas/URLs). Desactivado para comodidad.
+  "MD033": false, // MD033: Permite HTML crudo dentro de Markdown (a veces necesario).
+  "MD041": false // MD041: No exige que el archivo empiece con encabezado (útil para plantillas).
+}

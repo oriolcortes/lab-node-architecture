@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // Set the JavaScript version to the latest features (e.g., async/await, optional chaining)
+    "module": "CommonJS", // Compile as CommonJS (Node's traditional module system)
+    "moduleResolution": "Node", // Resolve modules like Node.js (classic CommonJS resolution)
+    "esModuleInterop": true, // Allow default imports from CommonJS modules (enables compatibility with require-style modules)
+    "forceConsistentCasingInFileNames": true, // Ensure file imports match exact casing (helps on case-sensitive file systems)
+    "noImplicitAny": true, // Prevent variables/functions from implicitly having the 'any' type
+    "strictNullChecks": true, // Ensure null and undefined are treated distinctly in types
+    "noEmitOnError": true, // Do not emit compiled JS files if there are any type errors
+    "sourceMap": true, // Generate source maps for easier debugging in editors or dev tools
+    "skipLibCheck": true, // Skip type-checking of declaration files (*.d.ts) for faster compilation
+    "outDir": "dist", // Directory where compiled JS files will be emitted
+    "rootDir": "src" // Root folder containing source files
+  },
+  "include": [
+    "src"
+  ], // Include all files under the 'src' folder for compilation
+  "exclude": [
+    "node_modules"
+  ] // Exclude 'node_modules' from the compilation process
+}

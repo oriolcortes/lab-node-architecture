@@ -23,5 +23,6 @@ dist-ssr
 !.vscode/extensions.json
 
 # Archivos de entorno
+.env
 .env.*
 !.env.example
