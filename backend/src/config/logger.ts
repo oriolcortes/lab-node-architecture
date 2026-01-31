@@ -1,7 +1,7 @@
-// Manages application logging configuration.
-// This file centralizes the setup of the logging mechanism using Pino, ensuring consistent log formatting, levels, and transports across the entire application.
-// It exports a reusable logger instance that can be imported in any module for structured logging.
-// In production, it is recommended to use a structured logging system like Pino, as it offers better performance and facilitates log analysis. However, for testing or basic examples, console.log may be sufficient.
+// Gestiona la configuración del sistema de logging de la aplicación.
+// Este archivo centraliza la configuración del mecanismo de logging utilizando Pino, garantizando un formato de logs, niveles y canales de salida coherentes en toda la aplicación.
+// Exporta una instancia reutilizable del logger que puede importarse en cualquier módulo para realizar logging estructurado.
+// En producción, se recomienda utilizar un sistema de logging estructurado como Pino, ya que ofrece mejor rendimiento y facilita el análisis de logs. No obstante, para pruebas o ejemplos básicos, console.log puede ser suficiente.
 
 import pino from 'pino';
 import { LOG_LEVEL } from './config';

@@ -1,24 +1,29 @@
-// Configura el servidor Express, los middlewares, las rutas, el manejo de errores y la conexión a la base de datos.
+// Configura el servidor Express, los middlewares, las rutas y el manejo de errores.
 
-import express from 'express';
 import cors from 'cors';
+import express from 'express';
 import mongoose from 'mongoose';
-import { CLIENT_URL } from './config/config';
+import { CLIENT_URL, NODE_ENV } from './config/config';
 import { createConnection } from './config/db';
+import { baseRouter } from './routes/base.routes';
 
-// Initialize express
+// Inicializa Express
 export const app = express();
 app.disable('x-powered-by');
 
-// Allow cors for all connexions (development)
-app.use(cors());
-// Allow cors for especific client url (production)
-app.use(cors({ origin: CLIENT_URL }));
-
-// Connect to the database
+// Conecta con la base de datos
 void (async () => {
   await createConnection();
 })();
+
+// Configura CORS según el entorno
+if (NODE_ENV === 'production') {
+  // Producción: CORS restrictivo para un cliente específico
+  app.use(cors({ origin: CLIENT_URL }));
+} else {
+  // Desarrollo: CORS abierto para todas las conexiones
+  app.use(cors());
+}
 
 app.get('/health', (_req, res) => {
   const isConnected = mongoose.connection.readyState === 1;
@@ -29,3 +34,5 @@ app.get('/health', (_req, res) => {
     db: { connected: isConnected },
   });
 });
+
+app.use('/api/v1', baseRouter);
