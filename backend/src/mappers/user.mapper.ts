@@ -7,12 +7,12 @@ import {
   type UserResponseDto,
 } from '../dtos/user.dto';
 import {
-  type IUser,
-  type IUserCreate,
-  type IUserUpdate,
+  type User,
+  type UserCreate,
+  type UserUpdate,
 } from '../interfaces/user.interface';
 
-export const toUserResponse = (u: IUser): UserResponseDto => ({
+export const toUserResponse = (u: User): UserResponseDto => ({
   id: u.id,
   name: u.name,
   email: u.email,
@@ -22,7 +22,7 @@ export const toUserResponse = (u: IUser): UserResponseDto => ({
   updatedAt: u.updatedAt.toISOString(),
 });
 
-export const toCreateUserInput = (dto: CreateUserDto): IUserCreate => ({
+export const toCreateUserInput = (dto: CreateUserDto): UserCreate => ({
   name: dto.name,
   email: dto.email,
   password: dto.password,
@@ -30,8 +30,8 @@ export const toCreateUserInput = (dto: CreateUserDto): IUserCreate => ({
   isBlocked: false,
 });
 
-export const toUpdateUserInput = (dto: UpdateUserDto): IUserUpdate => {
-  const input: IUserUpdate = {};
+export const toUpdateUserInput = (dto: UpdateUserDto): UserUpdate => {
+  const input: UserUpdate = {};
 
   if (dto.name !== undefined) input.name = dto.name;
   if (dto.email !== undefined) input.email = dto.email;

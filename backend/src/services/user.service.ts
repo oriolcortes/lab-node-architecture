@@ -3,7 +3,7 @@
 
 import { httpStatus } from '../config/httpStatusCodes';
 import logger from '../config/logger';
-import { IUser, IUserCreate, IUserUpdate } from '../interfaces/user.interface';
+import { User, UserCreate, UserUpdate } from '../interfaces/user.interface';
 import { UserRepository } from '../repositories/user.repository.inmemory';
 import { PasswordHelper } from '../utils/password.helper';
 import { AppError } from '../utils/application.error';
@@ -32,13 +32,13 @@ export class UserService {
   getAll = async (pagination: {
     skip: number;
     limit: number;
-  }): Promise<IUser[]> => {
+  }): Promise<User[]> => {
     logger.debug(`Service: Fetching all users`);
     const filters = { includeBlocked: false }; // Filter logic
     return this.userRepository.getAll(filters, pagination);
   };
 
-  getById = async (id: string): Promise<IUser> => {
+  getById = async (id: string): Promise<User> => {
     logger.debug(`Service: Fetching user by ID: ${id}`);
     const user = await this.userRepository.getById(id);
     if (!user) {
@@ -48,7 +48,7 @@ export class UserService {
     return user;
   };
 
-  delete = async (id: string): Promise<IUser> => {
+  delete = async (id: string): Promise<User> => {
     logger.debug(`Service: Deleting user with ID: ${id}`);
     const userDeleted = await this.userRepository.delete(id);
     if (!userDeleted) {
@@ -59,7 +59,7 @@ export class UserService {
     return userDeleted;
   };
 
-  create = async (data: IUserCreate): Promise<IUser> => {
+  create = async (data: UserCreate): Promise<User> => {
     const existingUser = await this.userRepository.getByEmail(data.email);
     if (existingUser) {
       logger.warn(`User with email ${data.email} already exists`);
@@ -94,7 +94,7 @@ export class UserService {
     return createdUser;
   };
 
-  update = async (id: string, data: IUserUpdate): Promise<IUser> => {
+  update = async (id: string, data: UserUpdate): Promise<User> => {
     const userToUpdate = await this.userRepository.getById(id);
     if (!userToUpdate) {
       logger.warn(`User with id ${id} not found for update`);

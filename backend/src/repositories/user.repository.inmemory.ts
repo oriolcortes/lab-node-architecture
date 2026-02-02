@@ -3,7 +3,7 @@
 // Usa array en memoria para simular una base de datos.
 
 import logger from '../config/logger';
-import { IUser, IUserCreate, IUserUpdate } from '../interfaces/user.interface';
+import { User, UserCreate, UserUpdate } from '../interfaces/user.interface';
 
 const usersDB = [
   {
@@ -32,7 +32,7 @@ export class UserRepository {
   getAll = (
     filters: { includeBlocked?: boolean },
     pagination: { skip: number; limit: number }
-  ): IUser[] => {
+  ): User[] => {
     logger.debug(`Repository: Finding users`);
     pagination.skip = pagination.skip || 0;
     pagination.limit =
@@ -46,7 +46,7 @@ export class UserRepository {
     return users;
   };
 
-  getById = (id: string): IUser | null => {
+  getById = (id: string): User | null => {
     logger.debug(`Repository: Finding user by ID: ${id}`);
     const user = usersDB.find((user) => user.id === id) || null;
     if (user) {
@@ -57,7 +57,7 @@ export class UserRepository {
     return user;
   };
 
-  delete = (id: string): IUser | null => {
+  delete = (id: string): User | null => {
     logger.debug(`Repository: Deleting user with id: ${id}`);
     const index = usersDB.findIndex((user) => user.id === id);
     if (index === -1) {
@@ -69,7 +69,7 @@ export class UserRepository {
     return deletedUser;
   };
 
-  getByEmail = (email: string): IUser | null => {
+  getByEmail = (email: string): User | null => {
     logger.debug(`Repository: Fetching user by email: ${email}`);
     const userFound = usersDB.find((user) => user.email === email);
     if (!userFound) {
@@ -80,7 +80,7 @@ export class UserRepository {
     return userFound;
   };
 
-  create = (data: IUserCreate): IUser => {
+  create = (data: UserCreate): User => {
     logger.debug('Repository: Creating user with data', { data });
     usersDB.push({
       ...data,
@@ -95,13 +95,13 @@ export class UserRepository {
       },
       'Repository: User created'
     );
-    return createdUser as IUser;
+    return createdUser as User;
   };
 
-  update = (id: string, data: IUserUpdate): IUser => {
+  update = (id: string, data: UserUpdate): User => {
     logger.debug(`Repository: Updating user with data: ${{ id, data }}`);
     const index = usersDB.findIndex((user) => user.id === id);
-    const user = usersDB[index] as IUser;
+    const user = usersDB[index] as User;
     if (data.name !== undefined) user.name = data.name;
     if (data.email !== undefined) user.email = data.email;
     if (data.password !== undefined) user.password = data.password;

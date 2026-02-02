@@ -2,9 +2,9 @@
 // Define la estructura de los documentos de usuario en la base de datos.
 
 import mongoose from 'mongoose';
-import { IUser } from '../interfaces/user.interface';
+import { User } from '../interfaces/user.interface';
 
-export interface IUserModel extends Omit<IUser, 'id'>, mongoose.Document {
+export interface UserModel extends Omit<User, 'id'>, mongoose.Document {
   _id: mongoose.Types.ObjectId;
 }
 
@@ -25,4 +25,4 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export const UserModel = mongoose.model<IUserModel>('User', userSchema);
+export const UserModel = mongoose.model<UserModel>('User', userSchema);

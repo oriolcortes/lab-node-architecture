@@ -1,14 +1,14 @@
 import logger from '../config/logger';
-import { IUser } from '../interfaces/user.interface';
-import { IUserModel, UserModel } from '../models/user.model';
+import { User } from '../interfaces/user.interface';
+import { UserModel, UserModel } from '../models/user.model';
 import { BaseRepository } from './base.repository';
 
-export class UserRepository extends BaseRepository<IUser, IUserModel> {
+export class UserRepository extends BaseRepository<User, UserModel> {
   constructor() {
     super(UserModel, 'user');
   }
 
-  async getByEmail(email: string): Promise<IUser | null> {
+  async getByEmail(email: string): Promise<User | null> {
     logger.debug(`Repository: Fetching user by email: ${email}`);
     const user = await this.model.findOne({ email });
     if (!user) {

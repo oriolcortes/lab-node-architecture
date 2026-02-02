@@ -1,7 +1,7 @@
 // Contiene la interfaz principal de User y todos los tipos de dominio relacionados.
 // Garantiza un manejo coherente y seguro a nivel de tipos de los datos de autenticación en toda la aplicación.
 
-import { IUser } from './user.interface';
+import { User } from './user.interface';
 
 export interface ILogin {
   email: string;
@@ -9,6 +9,6 @@ export interface ILogin {
 }
 
 export interface IAuthResult {
-  user: IUser;
+  user: User;
   accessToken: string;
 }

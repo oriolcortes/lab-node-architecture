@@ -1,7 +1,7 @@
 // Contiene la interfaz principal de User y todos los tipos de dominio relacionados.
 // Garantiza un manejo coherente y seguro a nivel de tipos de los datos de usuario en toda la aplicación.
 
-export interface IUser {
+export interface User {
   id: string;
   name: string;
   email: string;
@@ -14,6 +14,6 @@ export interface IUser {
 
 type SystemKeys = 'id' | 'createdAt' | 'updatedAt';
 
-export type IUserCreate = Omit<IUser, SystemKeys>;
+export type UserCreate = Omit<User, SystemKeys>;
 
-export type IUserUpdate = Partial<Omit<IUser, SystemKeys>>;
+export type UserUpdate = Partial<Omit<User, SystemKeys>>;
