@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 import { AppError } from '../utils/application.error';
 import { toCreateUserInput, toUserResponse } from '../mappers/user.mapper';
 import { toAuthResponse, toLoginInput } from '../mappers/auth.mapper';
+import { handleControllerError } from '../utils/logger.helper';
 
 export class AuthController {
   private readonly userService: UserService;
@@ -39,19 +40,7 @@ export class AuthController {
       logger.info(`Controller: User logged in successfully: ${body.email}`);
       res.send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug(`Controller: Error during login for email: ${body.email}`);
-      if (!(appError instanceof AppError)) {
-        appError = new AppError(
-          'Login failed',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            email: body.email,
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Login failed'));
     }
   };
 
@@ -78,22 +67,7 @@ export class AuthController {
       logger.info(`Controller: User registered successfully: ${body.email}`);
       res.status(httpStatus.CREATED).send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug(
-        { email: body.email, body },
-        'Controller: Error during registration'
-      );
-      if (!(appError instanceof AppError)) {
-        appError = new AppError(
-          'Registration failed',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            email: body.email,
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Error registering user'));
     }
   };
 }

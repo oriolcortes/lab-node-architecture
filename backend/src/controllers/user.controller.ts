@@ -12,6 +12,7 @@ import {
 } from '../mappers/user.mapper';
 import { UserService } from '../services/user.service';
 import { AppError } from '../utils/application.error';
+import { handleControllerError } from '../utils/logger.helper';
 
 export class UserController {
   private readonly userService: UserService;
@@ -47,18 +48,7 @@ export class UserController {
       logger.info('Controller: Users fetched successfully');
       res.send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug('Controller: Error fetching users');
-      if (!(appError instanceof AppError)) {
-        appError = new AppError(
-          'Error fetching users',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Error fetching users'));
     }
   };
 
@@ -80,22 +70,7 @@ export class UserController {
       logger.info(`Controller: User id: ${userId} fetched successfully`);
       res.send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug(
-        { id: req.params.id },
-        'Controller: Error fetching user by id'
-      );
-      if (!(appError instanceof AppError)) {
-        appError = new AppError(
-          'Error fetching user by id',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            id: req.params.id,
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Error fetching user by id'));
     }
   };
 
@@ -122,19 +97,7 @@ export class UserController {
       logger.info(`Controller: User id: ${userId} deleted successfully`);
       res.send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug({ id: req.params.id }, 'Controller: Error deleting user');
-      if (!(appError instanceof AppError)) {
-        appError = new AppError(
-          'Error deleting user',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            id: req.params.id,
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Error deleting user'));
     }
   };
 
@@ -159,19 +122,7 @@ export class UserController {
       logger.info('Controller: User created successfully');
       res.status(httpStatus.CREATED).send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug({ body: req.body }, 'Controller: Error creating user');
-      if (!(error instanceof AppError)) {
-        appError = new AppError(
-          'Error creating user',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            body: req.body,
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Error creating user'));
     }
   };
 
@@ -206,23 +157,7 @@ export class UserController {
       logger.info(`Controller: User id: ${userId} updated successfully`);
       res.send(response);
     } catch (error) {
-      let appError = error;
-      logger.debug(
-        { id: req.params.id, body: req.body },
-        'Controller: Error updating user'
-      );
-      if (!(appError instanceof AppError)) {
-        appError = new AppError(
-          'Error updating user',
-          httpStatus.INTERNAL_SERVER_ERROR,
-          {
-            id: req.params.id,
-            body: req.body,
-            originalError: appError,
-          }
-        );
-      }
-      next(appError);
+      next(handleControllerError(error, 'Error updating user'));
     }
   };
 }
