@@ -4,6 +4,7 @@
 
 import logger from '../config/logger';
 import { User, UserCreate, UserUpdate } from '../interfaces/user.interface';
+import { AppError } from '../utils/application.error';
 
 const usersDB = [
   {
@@ -81,7 +82,7 @@ export class UserRepository {
   };
 
   create = (data: UserCreate): User => {
-    logger.debug('Repository: Creating user with data', { data });
+    logger.debug(`Repository: Creating user with data ${JSON.stringify(data)}`);
     usersDB.push({
       ...data,
       id: (usersDB.length + 1).toString(),
@@ -98,9 +99,13 @@ export class UserRepository {
     return createdUser as User;
   };
 
-  update = (id: string, data: UserUpdate): User => {
+  update = (id: string, data: UserUpdate): User | null => {
     logger.debug(`Repository: Updating user with data: ${{ id, data }}`);
     const index = usersDB.findIndex((user) => user.id === id);
+    if (index === -1) {
+      logger.debug(`Repository: User with ID ${id} not found`);
+      return null;
+    }
     const user = usersDB[index] as User;
     if (data.name !== undefined) user.name = data.name;
     if (data.email !== undefined) user.email = data.email;

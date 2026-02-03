@@ -82,11 +82,6 @@ export class UserController {
     const userId = req.params.id;
     logger.debug(`Controller: Received request to delete user id: ${userId}`);
     try {
-      if (!userId || isNaN(Number(userId))) {
-        throw new AppError('Invalid user id', httpStatus.BAD_REQUEST, {
-          id: userId,
-        });
-      }
       const user = await this.userService.delete(userId);
       const data = toUserResponse(user);
 
@@ -133,19 +128,8 @@ export class UserController {
   ): Promise<void> => {
     const userId = req.params.id;
     const body = req.body;
-    logger.debug(`Controller: Received request to update user id: ${userId}`, {
-      body,
-    });
+    logger.debug(`Controller: Received request to update user id: ${userId} with body: ${JSON.stringify(body)}`);
     try {
-      if (!userId || isNaN(Number(userId))) {
-        throw new AppError('Invalid user id', httpStatus.BAD_REQUEST, {
-          id: userId,
-        });
-      }
-      if (!body) {
-        throw new AppError('Request body is missing', httpStatus.BAD_REQUEST);
-      }
-
       const userToUpdate = toUpdateUserInput(body);
       const user = await this.userService.update(userId, userToUpdate);
       const data = toUserResponse(user);

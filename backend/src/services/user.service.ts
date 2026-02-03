@@ -72,9 +72,7 @@ export class UserService {
       );
     }
     if (this.getAge(data.birthday) < 18) {
-      logger.warn('User is under 18 years old', {
-        birthday: data.birthday,
-      });
+      logger.warn(`User is under 18 years old with birthday ${data.birthday}`);
       throw new AppError(
         'User must be at least 18 years old',
         httpStatus.BAD_REQUEST,
@@ -98,18 +96,16 @@ export class UserService {
     const userToUpdate = await this.userRepository.getById(id);
     if (!userToUpdate) {
       logger.warn(`User with id ${id} not found for update`);
-      throw new AppError('User not found');
+      throw new AppError('User not found', httpStatus.NOT_FOUND, { id });
     }
 
     if (data.birthday && this.getAge(data.birthday) < 18) {
-      logger.warn('User is under 18 years old', {
-        birthday: data.birthday,
-      });
+      logger.warn(`User is under 18 years old with birthday ${data.birthday}`);
       throw new AppError(
         'User must be at least 18 years old',
-        httpStatus.CONFLICT,
+        httpStatus.BAD_REQUEST,
         {
-          email: data.email,
+          birthday: data.birthday,
         }
       );
     }
