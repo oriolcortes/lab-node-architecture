@@ -11,9 +11,7 @@ export const createConnection = async () => {
     const options: ConnectOptions = {};
 
     if (!DATABASE_URL) {
-      const error = new Error('DATABASE_URL is not defined');
-      logError(error, 'Database configuration error');
-      throw error;
+      throw new Error('DATABASE_URL is not defined');
     }
 
     logger.info('Attempting to connect to the DB...');
